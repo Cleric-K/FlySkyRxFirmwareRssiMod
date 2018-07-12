@@ -1,4 +1,9 @@
-# RSSI support for IA6B and X6B FlySky receivers
+# RSSI support for FlySky receivers
+
+Supported receivers:
+* IA6B
+* X6B
+* IA6C
 
 These receivers have knowledge of RSSI (as it can be seen from the telemetry values
 at the transmitter side) but they do not make it available to the Flight
