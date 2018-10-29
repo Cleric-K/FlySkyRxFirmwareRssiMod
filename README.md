@@ -30,6 +30,9 @@ To flash them you'll need a ST-Link dongle.
 Checkout povlhp's repo [FlySkyRxFirmware](https://github.com/povlhp/FlySkyRxFirmware) for detailed
 instructions.
 
+> Note: If you are having problems with flashing, consider connecting also the `RST` (Reset) pad of the receiver to the `RST` pin of the ST-Link.<br/>
+> Also it might be better to power up the whole receiver with +5V (you can use the +5V from the ST-Link) instead of supplying just the +3.3V for flashing. `GND` should be connected in all cases. **Never connect +5V to the +3.3V pad of the receiver.**
+
 **!!!Always backup your existing firmware first!!!**
 
 Also consider replacing the four bytes at offset 0x1C00 (see the above link for details) if you want to avoid rebinding
