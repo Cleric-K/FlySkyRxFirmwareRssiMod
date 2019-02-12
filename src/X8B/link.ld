@@ -10,19 +10,19 @@ SECTIONS {
         . = . ;
     } >FLASH
 
-    .text 0x08006500 : {
+    .text 0x08006FB0 : {
         *(.text)
     } > FLASH
 
-    .hook_rssi 0x0800392A : {
-        *(.hook_rssi)
+    .hook_rssi 0x08004364 : {
+        *(.hook_ibus_rssi)
     } >FLASH
 
-    .hook_skip_crc 0x08000ED6 : {
+    .hook_skip_crc 0x08000E94 : {
         *(.hook_skip_crc)
     } >FLASH
 
 
-    get_signal_strength = 0x080040BC;
-    prepare_ppm_buf = 0x08003A24;
+    get_signal_strength = 0x080048C4;
+    prepare_ppm_buf = 0x0800447C;
 }

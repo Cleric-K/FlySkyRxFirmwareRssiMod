@@ -1,19 +1,19 @@
-PREFIX=arm-none-eabi-
-CC=${PREFIX}gcc
-LD=${PREFIX}ld
-OBJCOPY=${PREFIX}objcopy
-FLAGS=-mthumb -mcpu=cortex-m0
+PREFIX = arm-none-eabi-
+CC := ${PREFIX}gcc
+LD := ${PREFIX}ld
+OBJCOPY := ${PREFIX}objcopy
+FLAGS = -mthumb -mcpu=cortex-m0
 
-DEVICE=X6B
-FW_ORIG=${DEVICE}_orig.bin
-FW_RSSI_ELF=${DEVICE}_rssi.elf
-FW_RSSI_BIN=../../build/${DEVICE}_rssi.bin
+RSSI_CHANNEL ?= 14
 
-OBJECTS=hook_ibus_rssi.o inject_rssi.o hook_skip_crc.o
+# get device name from directory name
+DEVICE := $(lastword $(subst /, ,$(dir $(abspath $(lastword $(MAKEFILE_LIST))))))
+FW_ORIG := ${DEVICE}_orig.bin
+FW_RSSI_ELF := ${DEVICE}_rssi_ch${RSSI_CHANNEL}.elf
+FW_RSSI_BIN := ../../build/${DEVICE}_rssi_ch${RSSI_CHANNEL}.bin
 
+OBJECTS := hooks.o inject_rssi_ch${RSSI_CHANNEL}.o
 
-
-all: ${FW_RSSI_BIN}
 
 ${FW_RSSI_BIN}: link.ld ${OBJECTS}
 	${LD} -T link.ld ${OBJECTS} -o ${FW_RSSI_ELF}
@@ -23,8 +23,8 @@ ${FW_RSSI_BIN}: link.ld ${OBJECTS}
 %.o: %.s
 	${CC} ${FLAGS} -c $<
 
-%.o: %.c
-	${CC} ${FLAGS} -c -Os $<
+inject_rssi_ch${RSSI_CHANNEL}.o: inject_rssi.c
+	${CC} ${FLAGS} -D RSSI_CHANNEL=${RSSI_CHANNEL} -c -Os -o $@ $<
 
 clean:
-	rm -f ${OBJECTS} ${FW_RSSI_ELF} ${FW_RSSI_BIN}
+	rm -f *.o *.elf ../../build/${DEVICE}_*.bin

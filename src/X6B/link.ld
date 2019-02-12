@@ -14,7 +14,7 @@ SECTIONS {
         *(.text)
     } > FLASH
 
-    .hook_ibus_rssi 0x08002C7E : {
+    .hook_rssi 0x08002F72 : {
         *(.hook_ibus_rssi)
     } >FLASH
 
@@ -24,4 +24,5 @@ SECTIONS {
 
 
     get_signal_strength = 0x08003938;
+    prepare_ppm_buf = 0x08003340;
 }

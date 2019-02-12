@@ -1,9 +1,15 @@
-all:
-	$(MAKE) -C src/IA6B
-	$(MAKE) -C src/X6B
-	$(MAKE) -C src/IA6C
+DIRS := $(wildcard src/*)
+CLEANDIRS := $(addsuffix .clean, $(DIRS))
 
-clean:
-	$(MAKE) -C src/IA6B clean
-	$(MAKE) -C src/X6B clean
-	$(MAKE) -C src/IA6C clean
+.PHONY: ${DIRS} ${CLEANDIRS}
+
+all: ${DIRS}
+
+${DIRS}:
+	$(MAKE) -C $@ RSSI_CHANNEL=14
+	$(MAKE) -C $@ RSSI_CHANNEL=8
+
+clean: ${CLEANDIRS}
+
+${CLEANDIRS}: %.clean:
+	$(MAKE) -C $* clean
