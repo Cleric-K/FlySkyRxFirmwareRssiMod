@@ -4,17 +4,18 @@ Supported receivers:
 * IA6B
 * X6B
 * IA6C
+* X8B
+* IA8X
 
 These receivers have knowledge of RSSI (as it can be seen from the telemetry values
 at the transmitter side) but they do not make it available to the Flight
 Controller.
 
-This modification injects the Signal Strength value into channel 14 of the
-IBUS frame.
+This modification injects the Signal Strength value into one of the channels (most commonly channel 14) which are then read by the Flight Controller. All protocols (IBUS, SBUS and PPM) are supported (see below for an important note on PPM).
 
 ## Signal Strength
 
-The receivers have knowledge of RSSI and Noise levels. The difference between the two is the
+The receivers have knowledge of Signal and Noise levels. The difference between the two is the
 Signal-To-Noise ratio (SNR). Additionally, on the telemetry screen at the TX side we can see that there is as SigS value
 which varies from 0 to 10 (10 being best signal). This is the value that is used in this mod. It is mapped to the standard
 channel range [1000; 2000], thus it can be easily used in BetaFlight/iNav.
@@ -26,7 +27,11 @@ channel range [1000; 2000], thus it can be easily used in BetaFlight/iNav.
 
 You can either build the images yourself or use the prebuilt ones in the [build](build) directory.
 
-To flash them you'll need a ST-Link dongle.
+The prebuilt images have two versions each - one which injects the Signal Strength into channel 14 and one for channel 8.
+> You need the `channel 8` version if you intend to use PPM. The reason for this is that PPM protocol (as implemented by these receivers) has only 8 channels and channel data for channels above 8 is ignored.
+> Digital protocols (IBUS and SBUS) can use either version, but it is recommended to use the `channel 14` version, because most transmitters can send only up to 10 channels, thus by using channel 14 you are not wasting one of your usable channels.
+
+To flash the firmware you'll need a ST-Link dongle.
 Checkout povlhp's repo [FlySkyRxFirmware](https://github.com/povlhp/FlySkyRxFirmware) for detailed
 instructions.
 
