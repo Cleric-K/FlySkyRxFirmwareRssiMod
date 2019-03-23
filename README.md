@@ -6,6 +6,8 @@ Supported receivers:
 * IA6C
 * X8B
 * IA8X
+* A8S
+* 8A
 
 These receivers have knowledge of RSSI (as it can be seen from the telemetry values
 at the transmitter side) but they do not make it available to the Flight
@@ -42,6 +44,8 @@ instructions.
 
 Also consider replacing the four bytes at offset 0x1C00 (see the above link for details) if you want to avoid rebinding
 after flashing.
+
+> Note: **DON'T DO THAT** on the **A8S** and **8A** receivers. They store the transmitter ID in EEPROM and it is not affected by flashing - you won't need to rebind. Offset 0x1C00 contains code in these receivers and if you modify it you'll corrupt the firmware.
 
 ## Details about Signal Strength calculation
 The original firmware reveals how the Signal Strength is calculated. It is based on SNR.
