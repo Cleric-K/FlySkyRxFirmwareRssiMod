@@ -25,4 +25,5 @@
 .section .hook_add_sig_noise_in_get_rx_frame, "ax"
     bl add_sig_noise
 
-
+.section .hook_disable_checksum, "ax"
+    nop

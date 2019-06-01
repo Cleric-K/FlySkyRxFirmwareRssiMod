@@ -58,6 +58,10 @@ SECTIONS {
         *(.hook_add_sig_noise_in_get_rx_frame)
     }
     
+    .hook_disable_checksum 0x080021C6 : {
+        *(.hook_disable_checksum)
+    }
+
     /* variables */
     main_state = 0x200000E7;
     some_state = 0x200000E6;
