@@ -13,6 +13,8 @@ These receivers (except A8S and 8A) have knowledge of RSSI (as it can be seen fr
 at the transmitter side) but they do not make it available to the Flight
 Controller.
 
+A8S and 8A receivers do not have telemetry in their original firmware. By using the code from the other receivers as reference, it was possible to implement RSSI measurement. Telemetry is not implemented.
+
 This modification injects the Signal Strength value into one of the channels (most commonly channel 14) which is then read by the Flight Controller. All protocols (IBUS, SBUS and PPM) are supported (see below for an important note on PPM).
 
 ## Signal Strength
