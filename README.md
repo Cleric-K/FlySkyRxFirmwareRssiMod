@@ -29,6 +29,8 @@ channel range [1000; 2000], thus it can be easily used in BetaFlight/iNav.
 
 ## How to use
 
+> Montis has written a detailed flashing guide. You can find it [here](http://www.multirotorguide.com/guide/flysky-receivers-rssi-mod-alternative-firmware/).
+
 You can either build the images yourself or use the prebuilt ones in the [build](build) directory.
 
 The prebuilt images have two versions each - one which injects the Signal Strength into channel 14 and one for channel 8.
