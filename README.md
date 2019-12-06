@@ -2,12 +2,14 @@
 
 Supported receivers:
 * IA6B
+* IA10B
 * X6B
 * IA6C
 * X8B
 * IA8X
 * A8S
 * 8A
+* X14S
 
 These receivers (except A8S and 8A) have knowledge of RSSI (as it can be seen from the telemetry values
 at the transmitter side) but they do not make it available to the Flight
