@@ -10,12 +10,14 @@ Supported receivers:
 * A8S
 * 8A
 * X14S
+* Flit10 - Reported to work with the IA6B firmware. See [here](https://www.rcgroups.com/forums/showthread.php?3093552-RSSI-Firmware-mod-for-FlySky-IA6B-and-X6B/page24#post43460731).
+* RX2A Pro/Pro V1 - Reported to work with the the A8S firmware. See [here](https://www.rcgroups.com/forums/showthread.php?3093552-RSSI-Firmware-mod-for-FlySky-IA6B-and-X6B&postid=44068183).
 
-These receivers (except A8S and 8A) have knowledge of RSSI (as it can be seen from the telemetry values
+Most of these receivers have knowledge of RSSI (as it can be seen from the telemetry values
 at the transmitter side) but they do not make it available to the Flight
 Controller.
 
-A8S and 8A receivers do not have telemetry in their original firmware. By using the code from the other receivers as reference, it was possible to implement RSSI measurement. Telemetry is not implemented.
+Some receivers (like A8S and 8A) do not have telemetry in their original firmware but using the code from the other receivers as reference, it was possible to implement RSSI measurement. Telemetry is not implemented.
 
 This modification injects the Signal Strength value into one of the channels (most commonly channel 14) which is then read by the Flight Controller. All protocols (IBUS, SBUS and PPM) are supported (see below for an important note on PPM).
 
